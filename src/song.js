@@ -1,0 +1,18 @@
+import React, { Component } from 'react';
+
+class Song extends Component {
+
+    render() {
+       
+    return (
+        <div>
+           <button type="button"> Play </button> 
+        </div>
+    )
+    }
+}
+
+
+
+
+export default Song; 

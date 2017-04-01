@@ -9,15 +9,17 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 
 //might need to do app.use(express.static(path.join(__dirname, someplace where index is)))
+app.use(express.static(path.join(__dirname, './../www')))
+
 app.use(bodyParser.json());
 
-app.get('/', (request, response) => {
-    response.send('server is operational!')
-})
+// app.get('/', (request, response) => {
+//     response.send('server is operational!')
+// })
 
 app.get('/recent', (request, response) => {
     let authHeader = {
-        headers: { Authorization: 'Bearer ' + 'BQBv4AL04Bv67UiMlmEAOD1UfRX_2LlhW9SQ5iK1t6kbs7X_IDo7obgLAT-H5xyPxFwobbbbMf46p1vdn8XLkKU1JipsTQTaQcHD5OVGb1aCBqPXsISi19n-s7453RPouSPp9eD00P9ccKLMVbyZ5YTOvc-vwmJgNEP3YGC3I8ktDliEipzgLB1hU1sDNCHo3Xmo' }
+        headers: { Authorization: 'Bearer ' + 'BQCh4nBzLDy1vt6IP8mC5VkOxTh_v6881ziTecFBzxn7wxfR-wMBer8rUQLE7pYXF4aATdefTYzDdidj0EQSUZpAscH006IZTAZV5dgiUP3LiOapDuvYjRQUgeZU2RGljJc6oeqOPvSNYnAUdwNip0C6YSiekFr0KwnMX73PXT9obT1kqrpRNiR7--Q1ObmKHdc9' }
     };
 
     axios.get('https://api.spotify.com/v1/me/player/recently-played', authHeader)
@@ -32,7 +34,7 @@ app.get('/recent', (request, response) => {
                 })
             }
             response.json(playlist)
-        } /* should do response.json once i figure out refresh */)
+        })
 })
 
 app.listen(8888, () => {
